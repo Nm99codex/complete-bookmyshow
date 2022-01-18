@@ -11,6 +11,7 @@ import Review from '../components/Reviews/Review';
 import MovieCard from '../components/Movies/MovieCard';
 import { IoIosArrowForward } from "react-icons/io"
 import MovieCardLike from '../components/Movies/MovieCardLike';
+import razorPay from 'razorpay'
 
 
 //redux
@@ -18,6 +19,40 @@ import { getSpecificmovie } from '../redux/reducers/movies/movies.action';
 import { getmovies } from '../redux/reducers/movies/movies.action';
 
 function Moviepage() {
+
+    // const reduxStateCart = useSelector((globalState) => globalState.cart.cart);
+    // const reduxStateUser = useSelector(
+    //     (globalState) => globalState.user.user.user
+    // );
+
+    const payNow = () => {
+        let options = {
+            key: "rzp_test_4eVpNXfCd8V6jV",
+            amount:
+                400,
+            currency: "INR",
+            name: "Zomato Master",
+            description: "Fast Delivery Service",
+            image:
+                "https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png",
+            handler: (data) => {
+                alert("Payment Successful");
+                console.log(data);
+            },
+            prefill: {
+                name: "hgh",
+                email: "jhghjghj",
+            },
+            theme: {
+                color: "#e23744",
+            },
+        };
+
+        const razorPay = new window.Razorpay(options);
+        razorPay.open();
+    };
+
+
 
     const cast = [
         "https://th.bing.com/th/id/R.7b528d6309ee84dc0d8fbffef7cc9347?rik=o5c5sfAZyc8IYg&riu=http%3a%2f%2fwww.newdesignfile.com%2fpostpic%2f2009%2f11%2fuser-icon_291700.jpg&ehk=fHg%2b5OocbzHvhnd4uHQgbLbzHw7cwTG4GXD1aIrXnts%3d&risl=&pid=ImgRaw&r=0",
@@ -111,7 +146,12 @@ function Moviepage() {
                             </div>
                             <div className=" text-white text-2xl pt-1"> {details.likes}%</div>
                         </div>
-                        <div className="text-white text-lg pt-2">{details.Votes} Ratings <IoIosArrowForward /> </div>
+                        <div className='flex justify-center'>
+                            <div className="text-white text-lg pt-2">{details.Votes} Ratings</div>
+                            <div className='text-white  text-lg pt-3'>
+                                <IoIosArrowForward />
+                            </div>
+                        </div>
                     </div>
 
                     <div className="bg-gray-600 mt-3 px-4 py-2 flex justify-between text-white rounded-xl space-x-6">
@@ -140,8 +180,8 @@ function Moviepage() {
                         2h 59m  . Action, Thriller . UA . 17 Dec, 2021
                     </div>
 
-                    <button className='bg-red-500 px-20 py-3 items-center text-white font-semibold rounded-xl mt-2'>
-                        Book Tickets
+                    <button onClick={payNow} className='bg-red-500 px-20 py-3 items-center text-white font-semibold rounded-xl mt-2'>
+                        Buy Rs.{details.Cost}/-
                     </button>
                 </div>
             </div>

@@ -5,7 +5,7 @@ function MovieCard(props) {
     console.log("props", props)
     return (
         <>
-        <Link to={`movie/${props._id}`}>
+        <Link to={`movie/${props._id}`} className="no-underline">
 
             <div className="hidden lg:block w-48 h-60 " >
                 <img src={props.image} className="w-full h-full rounded-t-lg" />
@@ -16,7 +16,7 @@ function MovieCard(props) {
                         </div>
                         <div className=" text-white rounded-b-lg "> {props.likes}%</div>
                     </div>
-                        <div className="text-white pr-2">{props.Votes} Votes</div>
+                        <div className="text-white pr-2 no-underline">{props.Votes} Votes</div>
                 </div>
                 <div className="text-black text-lg font-bold text-center">{props.title}</div>
             </div>

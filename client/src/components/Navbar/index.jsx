@@ -121,7 +121,7 @@ const LargeTabs = () => {
     );
 };
 
-function FoodTab() {
+function Navbar() {
     return (
         <>
             <div>
@@ -132,7 +132,7 @@ function FoodTab() {
     );
 }
 
-export default FoodTab;
+export default Navbar;
 
 // NOTE
 // Key inside map()
